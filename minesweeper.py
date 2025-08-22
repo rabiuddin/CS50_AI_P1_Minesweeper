@@ -108,6 +108,7 @@ class Sentence():
         if len(self.cells) == self.count:
             return self.cells
         return set()
+    
     def known_safes(self):
         """
         Returns the set of all cells in self.cells known to be safe.
@@ -241,9 +242,6 @@ class MinesweeperAI():
                     self.mark_mine(cell=cells)
                     changed = True
 
-        for sentence in self.knowledge:
-            print(f"Cells: {sentence.cells}      Count: {sentence.count}")
-
         # 5.
         changed = True
         while changed:
@@ -262,9 +260,6 @@ class MinesweeperAI():
                             new_sentences.append(new_sentence)
                             changed = True
             self.knowledge.extend(new_sentences)
-        
-        for sentence in self.knowledge:
-            print(f"Cells: {sentence.cells}      Count: {sentence.count}")
 
     def make_safe_move(self):
         """
@@ -280,6 +275,7 @@ class MinesweeperAI():
                 return move
 
         return None
+    
     def make_random_move(self):
         """
         Returns a move to make on the Minesweeper board.
